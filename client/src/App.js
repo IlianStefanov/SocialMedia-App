@@ -1,28 +1,71 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
 
+import indexRoutes from 'routes/index.jsx';
+import withStyles from '@material-ui/core/styles/withStyles';
+// Import Router
+import { createBrowserHistory } from 'history';
+import { Router, Route, Switch } from 'react-router-dom';
+
+// Import components
+import Header from './components/Header/Header.jsx';
+import HeaderLinks from './components/Header/HeaderLinks.jsx';
+import GridContainer from './components/Grid/GridContainer.jsx';
+import GridItem from './components/Grid/GridItem.jsx';
+import landingPageStyle from './assets/jss/material-kit-react/views/landingPage.jsx';
+import Parallax from './components/Parallax/Parallax.jsx';
+import './App.css';
+import LandingPage from './views/LandingPage/LandingPage.jsx';
+import LoginPage from './views/LoginPage/LoginPage.jsx';
+import RegisterPage from './views/RegisterPage/RegisterPage.jsx';
+
+import { Provider } from 'react-redux';
+
+// import REDUX store
+import store from './store';
+
+var hist = createBrowserHistory();
 class App extends Component {
   render() {
+    const { classes, ...rest } = this.props;
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Provider store={store}>
+        <Router history={hist}>
+          <div className="App">
+            <Header
+              color="transparent"
+              // routes={dashboardRoutes}
+              brand="Material Kit React"
+              rightLinks={<HeaderLinks />}
+              fixed
+              changeColorOnScroll={{
+                height: 400,
+                color: 'white'
+              }}
+              {...rest}
+            />
+            <Parallax filter image={require('assets/img/landing-bg.jpg')}>
+              <div className={classes.container}>
+                <GridContainer justify="center">
+                  <GridItem xs={12} sm={12} md={6}>
+                    <Route exact path="/" component={LandingPage} />
+                    <Route exact path="/register" component={RegisterPage} />
+                    <Route exact path="/login" component={LoginPage} />
+                  </GridItem>
+                </GridContainer>
+              </div>
+            </Parallax>
+            {/* <Switch>
+            {indexRoutes.map((prop, key) => {
+              return (
+                <Route path={prop.path} key={key} component={prop.component} />
+              );
+            })}
+          </Switch> */}
+          </div>
+        </Router>
+      </Provider>
     );
   }
 }
 
-export default App;
+export default withStyles(landingPageStyle)(App);

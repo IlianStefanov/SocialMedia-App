@@ -5,8 +5,7 @@ import {
   infoColor,
   successColor,
   warningColor,
-  dangerColor,
-  transparent
+  dangerColor
 } from 'assets/jss/material-kit-react.jsx';
 
 const buttonStyle = {
@@ -84,12 +83,10 @@ const buttonStyle = {
       backgroundColor: primaryColor,
       boxShadow:
         '0 14px 26px -12px rgba(156, 39, 176, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(156, 39, 176, 0.2)'
-    }
+    },
+    border: '2px solid ' + primaryColor
   },
-  noColor: {
-    backgroundColor: 'transparent',
-    border: '2px solid white'
-  },
+
   info: {
     backgroundColor: infoColor,
     boxShadow:
@@ -193,6 +190,10 @@ const buttonStyle = {
       boxShadow:
         '0 14px 26px -12px rgba(51, 51, 51, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(51, 51, 51, 0.2)'
     }
+  },
+  noColor: {
+    backgroundColor: 'transparent',
+    border: '2px solid white'
   },
   simple: {
     '&,&:focus,&:hover,&:visited': {

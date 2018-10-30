@@ -6,6 +6,7 @@
   "dependencies": {
     "@material-ui/core": "3.1.1",
     "@material-ui/icons": "3.0.1",
+    "axios": "^0.18.0",
     "classnames": "2.2.6",
     "history": "4.7.2",
     "moment": "2.22.2",
@@ -16,10 +17,13 @@
     "react": "16.5.2",
     "react-datetime": "2.15.0",
     "react-dom": "16.5.2",
+    "react-redux": "^5.1.0",
     "react-router-dom": "4.3.1",
     "react-scripts": "1.1.5",
     "react-slick": "0.23.1",
-    "react-swipeable-views": "0.13.0"
+    "react-swipeable-views": "0.13.0",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "babel-cli": "6.26.0",
