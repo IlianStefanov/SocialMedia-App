@@ -1,11 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { loginUser } from '../../actions/authActions';
 // @material-ui/core components
 import withStyles from '@material-ui/core/styles/withStyles';
 import InputAdornment from '@material-ui/core/InputAdornment';
+
 import Icon from '@material-ui/core/Icon';
 // @material-ui/icons
 import Email from '@material-ui/icons/Email';
 import People from '@material-ui/icons/People';
+
 // core components
 
 import Button from 'components/CustomButtons/Button.jsx';
@@ -31,6 +36,17 @@ class LoginPage extends React.Component {
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.auth.isAuthenticated) {
+      this.props.history.push('/');
+    }
+
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+  }
+
   componentDidMount() {
     // we add a hidden class to the card and after 700 ms we delete it and the transition appears
     setTimeout(
@@ -50,16 +66,18 @@ class LoginPage extends React.Component {
   onSubmit(e) {
     e.preventDefault();
 
-    const loginUser = {
+    const userData = {
       email: this.state.email,
       password: this.state.password
     };
 
-    console.log(loginUser);
+    this.props.loginUser(userData);
   }
 
   render() {
     const { classes, ...rest } = this.props;
+
+    const { errors } = this.state;
     return (
       <div className={classes.container}>
         <Card className={classes[this.state.cardAnimaton]}>
@@ -99,11 +117,12 @@ class LoginPage extends React.Component {
             <p className={classes.divider}>Or Be Classical</p>
             <CardBody>
               <CustomInput
-                labelText="Email..."
+                labelText={errors.email ? errors.email.toString() : 'Email...'}
                 id="email"
                 formControlProps={{
                   fullWidth: true
                 }}
+                error={errors.email ? true : ''}
                 inputProps={{
                   type: 'email',
                   value: this.state.email,
@@ -116,11 +135,14 @@ class LoginPage extends React.Component {
                 }}
               />
               <CustomInput
-                labelText="Password"
+                labelText={
+                  errors.password ? errors.password.toString() : 'Password...'
+                }
                 id="password"
                 formControlProps={{
                   fullWidth: true
                 }}
+                error={errors.password ? true : ''}
                 inputProps={{
                   type: 'password',
                   value: this.state.password,
@@ -147,4 +169,20 @@ class LoginPage extends React.Component {
   }
 }
 
-export default withStyles(loginPageStyle)(LoginPage);
+LoginPage.propTypes = {
+  loginUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+
+export default withStyles(loginPageStyle)(
+  connect(
+    mapStateToProps,
+    { loginUser }
+  )(LoginPage)
+);

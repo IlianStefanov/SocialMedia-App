@@ -1,6 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 // @material-ui/core components
 import withStyles from '@material-ui/core/styles/withStyles';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -19,8 +20,6 @@ import CardFooter from 'components/Card/CardFooter.jsx';
 import CustomInput from 'components/CustomInput/CustomInput.jsx';
 
 import loginPageStyle from 'assets/jss/material-kit-react/views/loginPage.jsx';
-
-import axios from 'axios';
 
 import { connect } from 'react-redux';
 import { registerUser } from '../../actions/authActions';
@@ -41,6 +40,14 @@ class RegisterPage extends React.Component {
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({
+        errors: nextProps.errors
+      });
+    }
+  }
   componentDidMount() {
     // we add a hidden class to the card and after 700 ms we delete it and the transition appears
     setTimeout(
@@ -60,7 +67,6 @@ class RegisterPage extends React.Component {
   onSubmit(e) {
     e.preventDefault();
 
-    const { errors } = this.state;
     const newUser = {
       name: this.state.name,
       email: this.state.email,
@@ -68,25 +74,21 @@ class RegisterPage extends React.Component {
       password2: this.state.password2
     };
 
-    this.props.registerUser(newUser);
-    // axios
-    //   .post('api/users/register', newUser)
-    //   .then(res => console.log(res.data))
-    //   .catch(err => this.setState({ errors: err.response.data }));
+    this.props.registerUser(newUser, this.props.history);
   }
 
   render() {
     const { classes, ...rest } = this.props;
     const { errors } = this.state;
     // console.log(errors);
-    const { user } = this.props.auth;
+
     return (
       <div className={classes.container}>
         <Card className={classes[this.state.cardAnimaton]}>
           <form className={classes.form} onSubmit={this.onSubmit}>
             <CardHeader color="primary" className={classes.cardHeader}>
               <h3>Register</h3>
-              <h3>{user ? user.name : null}</h3>
+
               {/* <div className={classes.socialLine}>
                 <Button
                   justIcon
@@ -222,12 +224,14 @@ class RegisterPage extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  errors: state.errors
 });
 
 RegisterPage.propTypes = {
   registerUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
 };
 
 export default withStyles(loginPageStyle)(

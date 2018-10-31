@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-
+import jwt_decode from 'jwt-decode';
+import setAuthToken from './utils/setAuthToken';
+import { setCurrentUser } from './actions/authActions';
 import indexRoutes from 'routes/index.jsx';
 import withStyles from '@material-ui/core/styles/withStyles';
 // Import Router
@@ -24,6 +26,17 @@ import { Provider } from 'react-redux';
 import store from './store';
 
 var hist = createBrowserHistory();
+
+// Check for token
+if (localStorage.jwtToken) {
+  // Set auth token header auth
+  setAuthToken(localStorage.jwtToken);
+  // Decode token and get user info
+  const decoded = jwt_decode(localStorage.jwtToken);
+  // Set user and is authenticated
+  store.dispatch(setCurrentUser(decoded));
+}
+
 class App extends Component {
   render() {
     const { classes, ...rest } = this.props;
@@ -43,6 +56,7 @@ class App extends Component {
               }}
               {...rest}
             />
+
             <Parallax filter image={require('assets/img/landing-bg.jpg')}>
               <div className={classes.container}>
                 <GridContainer justify="center">

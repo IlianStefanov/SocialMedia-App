@@ -5,7 +5,7 @@ import LoginPage from 'views/LoginPage/LoginPage.jsx';
 import RegisterPage from 'views/RegisterPage/RegisterPage.jsx';
 
 var indexRoutes = [
-  { path: '/landing-page', name: 'LandingPage', component: LandingPage },
+  { path: '/components', name: 'Components', component: Components },
   { path: '/register', name: 'RegisterPage', component: RegisterPage },
   { path: '/profile-page', name: 'ProfilePage', component: ProfilePage },
   { path: '/login', name: 'LoginPage', component: LoginPage },
