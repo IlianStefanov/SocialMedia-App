@@ -3,7 +3,8 @@ import React from 'react';
 import classNames from 'classnames';
 // @material-ui/core components
 import withStyles from '@material-ui/core/styles/withStyles';
-
+import { PropTypes } from 'prop-types';
+import { connect } from 'react-redux';
 // @material-ui/icons
 import Button from 'components/CustomButtons/Button.jsx';
 
@@ -12,6 +13,12 @@ import landingPageStyle from 'assets/jss/material-kit-react/views/landingPage.js
 const dashboardRoutes = [];
 
 class LandingPage extends React.Component {
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push('/dashboard');
+    }
+  }
+
   render() {
     const { classes, ...rest } = this.props;
     return (
@@ -43,4 +50,14 @@ class LandingPage extends React.Component {
   }
 }
 
-export default withStyles(landingPageStyle)(LandingPage);
+LandingPage.propTypes = {
+  auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default withStyles(landingPageStyle)(
+  connect(mapStateToProps)(LandingPage)
+);

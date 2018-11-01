@@ -48,6 +48,10 @@ class LoginPage extends React.Component {
   }
 
   componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push('/dashboard');
+    }
+
     // we add a hidden class to the card and after 700 ms we delete it and the transition appears
     setTimeout(
       function() {

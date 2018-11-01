@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
-import { setCurrentUser } from './actions/authActions';
+import { setCurrentUser, logOutUser } from './actions/authActions';
+import { clearCurrentProfile } from './actions/profileActions';
 import indexRoutes from 'routes/index.jsx';
 import withStyles from '@material-ui/core/styles/withStyles';
 // Import Router
@@ -19,6 +20,7 @@ import './App.css';
 import LandingPage from './views/LandingPage/LandingPage.jsx';
 import LoginPage from './views/LoginPage/LoginPage.jsx';
 import RegisterPage from './views/RegisterPage/RegisterPage.jsx';
+import Dashboard from './views/dashboard/dashboard';
 
 import { Provider } from 'react-redux';
 
@@ -35,6 +37,19 @@ if (localStorage.jwtToken) {
   const decoded = jwt_decode(localStorage.jwtToken);
   // Set user and is authenticated
   store.dispatch(setCurrentUser(decoded));
+
+  // Check for Expired token
+  const currentTime = Date.now / 1000;
+  if (decoded.exp < currentTime) {
+    // Logout user
+    store.dispatch(logOutUser());
+
+    store.dispatch(clearCurrentProfile());
+    //TODO: Clear current profile
+
+    // Redirect to login
+    window.location.href = '/login';
+  }
 }
 
 class App extends Component {
@@ -64,6 +79,7 @@ class App extends Component {
                     <Route exact path="/" component={LandingPage} />
                     <Route exact path="/register" component={RegisterPage} />
                     <Route exact path="/login" component={LoginPage} />
+                    <Route exact path="/dashboard" component={Dashboard} />
                   </GridItem>
                 </GridContainer>
               </div>
