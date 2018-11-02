@@ -3,12 +3,11 @@ import React from 'react';
 import classNames from 'classnames';
 // @material-ui/core components
 import withStyles from '@material-ui/core/styles/withStyles';
+import landingPageStyle from 'assets/jss/material-kit-react/views/landingPage.jsx';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 // @material-ui/icons
 import Button from 'components/CustomButtons/Button.jsx';
-
-import landingPageStyle from 'assets/jss/material-kit-react/views/landingPage.jsx';
 
 const dashboardRoutes = [];
 

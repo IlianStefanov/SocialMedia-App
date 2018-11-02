@@ -59,7 +59,7 @@ function HeaderLinks({ ...props }) {
         <CustomDropdown
           left
           caret={false}
-          hoverColor="black"
+          hoverColor="transparent"
           // dropdownHeader={`Welcome ${user.name}`}
           buttonText={
             <img src={user.avatar} className={classes.img} alt="profile" />
@@ -69,10 +69,13 @@ function HeaderLinks({ ...props }) {
             color: 'transparent'
           }}
           dropdownList={[
+            // Go to profile
+
             <a href="/profile" className={classes.listItemLink}>
               <Face className={classes.icons + ' ' + classes.linkIcon} />
               <span className={classes.linkText}>My Profile</span>
             </a>,
+            // Logout Button
             <a
               onClick={onLogoutClick.bind(this)}
               className={classes.listItemLink}

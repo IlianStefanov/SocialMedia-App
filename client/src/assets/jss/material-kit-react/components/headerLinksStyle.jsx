@@ -100,10 +100,12 @@ const headerLinksStyle = theme => ({
   },
   linkText: {
     flexGrow: '2',
-    textAlign: 'left'
+    textAlign: 'left',
+    color: '#525252'
   },
   linkIcon: {
-    flexGrow: '1'
+    flexGrow: '1',
+    color: '#525252'
   },
   socialIcons: {
     position: 'relative',

@@ -4,7 +4,8 @@ import {
   PROFILE_LOADING,
   PROFILE_NOT_FOUND,
   CLEAR_CURRENT_PROFILE,
-  GET_PROFILES
+  GET_PROFILES,
+  UPDATE_OR_CREATE_PROFILE
 } from './types';
 
 export const getCurrentProfile = () => dispatch => {
@@ -35,5 +36,11 @@ export const setProfileLoading = () => {
 export const clearCurrentProfile = () => {
   return {
     type: CLEAR_CURRENT_PROFILE
+  };
+};
+
+export const updateOrCreateProfile = () => {
+  return {
+    type: UPDATE_OR_CREATE_PROFILE
   };
 };

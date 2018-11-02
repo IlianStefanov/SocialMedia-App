@@ -7,18 +7,26 @@ const style = {
   grid: {
     position: 'relative',
     width: '100%',
-    minHeight: '1px',
+    // minHeight: '1px',
     paddingRight: '15px',
     paddingLeft: '15px',
     flexBasis: 'auto',
     textAlign: 'center'
+  },
+  align: {
+    textAlign: 'left'
   }
 };
 
 function GridItem({ ...props }) {
-  const { classes, children, className, ...rest } = props;
+  const { classes, children, className, align, ...rest } = props;
   return (
-    <Grid item {...rest} className={classes.grid + ' ' + className}>
+    <Grid
+      item
+      {...rest}
+      className={classes.grid + ' ' + className + ' ' + classes.align}
+      align
+    >
       {children}
     </Grid>
   );

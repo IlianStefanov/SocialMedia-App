@@ -21,9 +21,11 @@ import LandingPage from './views/LandingPage/LandingPage.jsx';
 import LoginPage from './views/LoginPage/LoginPage.jsx';
 import RegisterPage from './views/RegisterPage/RegisterPage.jsx';
 import Dashboard from './views/dashboard/dashboard';
-
+import CreateProfile from './views/create-profile/create-profile';
+import CreateProfileHeader from './views/create-profile/create-profileHeader';
+import PrivateRoute from './views/common/PrivateRoute';
 import { Provider } from 'react-redux';
-
+import ArrowDownwardSharp from '@material-ui/icons/ArrowDownwardSharp';
 // import REDUX store
 import store from './store';
 
@@ -79,11 +81,49 @@ class App extends Component {
                     <Route exact path="/" component={LandingPage} />
                     <Route exact path="/register" component={RegisterPage} />
                     <Route exact path="/login" component={LoginPage} />
-                    <Route exact path="/dashboard" component={Dashboard} />
+
+                    <Switch>
+                      <PrivateRoute
+                        exact
+                        path="/dashboard"
+                        component={Dashboard}
+                      />
+                    </Switch>
                   </GridItem>
+                </GridContainer>
+
+                <GridContainer justify="center">
+                  <GridItem xs={12} sm={12} md={12}>
+                    <Route
+                      exact
+                      path="/create-profile"
+                      component={CreateProfileHeader}
+                    />
+                  </GridItem>
+                  {/* <GridItem
+                    xs={12}
+                    sm={12}
+                    md={12}
+                    // className={classes.marginLeft}
+                  >
+                    <ArrowDownwardSharp />
+                  </GridItem> */}
                 </GridContainer>
               </div>
             </Parallax>
+
+            <div className={classes.container}>
+              <GridContainer justify="center">
+                <GridItem xs={12} sm={12} md={12}>
+                  <Route
+                    exact
+                    path="/create-profile"
+                    component={CreateProfile}
+                  />
+                </GridItem>
+              </GridContainer>
+            </div>
+
             {/* <Switch>
             {indexRoutes.map((prop, key) => {
               return (
