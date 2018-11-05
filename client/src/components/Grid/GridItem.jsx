@@ -12,21 +12,13 @@ const style = {
     paddingLeft: '15px',
     flexBasis: 'auto',
     textAlign: 'center'
-  },
-  align: {
-    textAlign: 'left'
   }
 };
 
 function GridItem({ ...props }) {
   const { classes, children, className, align, ...rest } = props;
   return (
-    <Grid
-      item
-      {...rest}
-      className={classes.grid + ' ' + className + ' ' + classes.align}
-      align
-    >
+    <Grid item {...rest} className={classes.grid + ' ' + className}>
       {children}
     </Grid>
   );

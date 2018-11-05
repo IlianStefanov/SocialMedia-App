@@ -1,7 +1,8 @@
 import {
   GET_PROFILE,
   PROFILE_LOADING,
-  CLEAR_CURRENT_PROFILE
+  CLEAR_CURRENT_PROFILE,
+  UPDATE_OR_CREATE_PROFILE
 } from '../actions/types';
 
 const initialState = {
@@ -29,6 +30,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         profile: null
+      };
+
+    case UPDATE_OR_CREATE_PROFILE:
+      return {
+        ...state
       };
     default:
       return state;

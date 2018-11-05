@@ -21,7 +21,7 @@ import LandingPage from './views/LandingPage/LandingPage.jsx';
 import LoginPage from './views/LoginPage/LoginPage.jsx';
 import RegisterPage from './views/RegisterPage/RegisterPage.jsx';
 import Dashboard from './views/dashboard/dashboard';
-import CreateProfile from './views/create-profile/create-profile';
+import CreateProfile from './views/create-profile/CreateProfile';
 import CreateProfileHeader from './views/create-profile/create-profileHeader';
 import PrivateRoute from './views/common/PrivateRoute';
 import { Provider } from 'react-redux';
@@ -115,11 +115,13 @@ class App extends Component {
             <div className={classes.container}>
               <GridContainer justify="center">
                 <GridItem xs={12} sm={12} md={12}>
-                  <Route
-                    exact
-                    path="/create-profile"
-                    component={CreateProfile}
-                  />
+                  <Switch>
+                    <PrivateRoute
+                      exact
+                      path="/create-profile"
+                      component={CreateProfile}
+                    />
+                  </Switch>
                 </GridItem>
               </GridContainer>
             </div>

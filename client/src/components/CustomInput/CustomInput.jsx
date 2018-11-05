@@ -22,7 +22,8 @@ function CustomInput({ ...props }) {
     error,
     white,
     inputRootCustomClasses,
-    success
+    success,
+    info
   } = props;
 
   const labelClasses = classNames({
@@ -42,6 +43,7 @@ function CustomInput({ ...props }) {
     [classes.input]: true,
     [classes.whiteInput]: white
   });
+
   var formControlClasses;
   if (formControlProps !== undefined) {
     formControlClasses = classNames(
@@ -51,6 +53,7 @@ function CustomInput({ ...props }) {
   } else {
     formControlClasses = classes.formControl;
   }
+
   return (
     <FormControl {...formControlProps} className={formControlClasses}>
       {labelText !== undefined ? (

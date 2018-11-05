@@ -3,30 +3,19 @@ import { TextField } from '@material-ui/core';
 
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
+import withStyles from '@material-ui/core/styles/withStyles';
+import selectGroupStyle from '../../assets/jss/material-kit-react/components/selectInputStyle';
 
-const TextFieldGroup = ({
-  name,
-  placeholder,
-  value,
-  laber,
-  error,
-  info,
-  type,
-  onChange,
-  disabled
-}) => {
+const TextAreaFieldGroup = ({ ...props }) => {
+  const { name, placeholder, value, error, info, onChange, classes } = props;
   return (
     <div className="form-group">
-      <input
-        type={type}
-        className={classnames('form-control form-control-lg', {
-          'is-invalid': error
-        })}
+      <textarea
+        className={classes.textarea}
         placeholder={placeholder}
         name={name}
         value={value}
         onChange={onChange}
-        disabled={disabled}
       />
 
       {error && <div className="invalid-feedback">{error}</div>}
@@ -34,19 +23,13 @@ const TextFieldGroup = ({
   );
 };
 
-TextFieldGroup.propTypes = {
+TextAreaFieldGroup.propTypes = {
   name: PropTypes.string.isrequired,
   placeholder: PropTypes.string,
   value: PropTypes.string.isrequired,
   info: PropTypes.string.isrequired,
   error: PropTypes.string,
-  type: PropTypes.string.isrequired,
-  onChange: PropTypes.func.isrequired,
-  disabled: PropTypes.string
+  onChange: PropTypes.func.isrequired
 };
 
-TextFieldGroup.defaultProps = {
-  name: 'text'
-};
-
-export default TextFieldGroup;
+export default withStyles(selectGroupStyle)(TextAreaFieldGroup);

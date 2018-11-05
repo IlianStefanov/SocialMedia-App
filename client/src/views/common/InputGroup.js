@@ -1,24 +1,22 @@
 import React from 'react';
-import { TextField } from '@material-ui/core';
+import { TextField, Input } from '@material-ui/core';
 
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 
-const TextFieldGroup = ({
+const InputGroup = ({
   name,
   placeholder,
   value,
-  laber,
   error,
-  info,
-  type,
+
   onChange,
-  disabled
+  icon,
+  type
 }) => {
   return (
     <div className="form-group">
-      <input
-        type={type}
+      <textarea
         className={classnames('form-control form-control-lg', {
           'is-invalid': error
         })}
@@ -26,7 +24,6 @@ const TextFieldGroup = ({
         name={name}
         value={value}
         onChange={onChange}
-        disabled={disabled}
       />
 
       {error && <div className="invalid-feedback">{error}</div>}
@@ -34,19 +31,18 @@ const TextFieldGroup = ({
   );
 };
 
-TextFieldGroup.propTypes = {
+InputGroup.propTypes = {
   name: PropTypes.string.isrequired,
   placeholder: PropTypes.string,
   value: PropTypes.string.isrequired,
-  info: PropTypes.string.isrequired,
+  icon: PropTypes.string.isrequired,
   error: PropTypes.string,
-  type: PropTypes.string.isrequired,
   onChange: PropTypes.func.isrequired,
-  disabled: PropTypes.string
+  type: PropTypes.string.isRequired
 };
 
-TextFieldGroup.defaultProps = {
-  name: 'text'
+InputGroup.defaultProps = {
+  type: 'text'
 };
 
-export default TextFieldGroup;
+export default InputGroup;
