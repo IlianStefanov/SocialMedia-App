@@ -19,9 +19,11 @@ import Parallax from './components/Parallax/Parallax.jsx';
 import './App.css';
 import LandingPage from './views/LandingPage/LandingPage.jsx';
 import LoginPage from './views/LoginPage/LoginPage.jsx';
+import ProfilePage from './views/dashboard/ProfilePage';
 import RegisterPage from './views/RegisterPage/RegisterPage.jsx';
 import Dashboard from './views/dashboard/dashboard';
 import CreateProfile from './views/create-profile/CreateProfile';
+import EditProfile from './views/edit-profile/EditProfile';
 import CreateProfileHeader from './views/create-profile/create-profileHeader';
 import PrivateRoute from './views/common/PrivateRoute';
 import { Provider } from 'react-redux';
@@ -68,71 +70,72 @@ class App extends Component {
               rightLinks={<HeaderLinks />}
               fixed
               changeColorOnScroll={{
-                height: 400,
+                height: 200,
                 color: 'white'
               }}
               {...rest}
             />
+            <Route exact path="/" component={LandingPage} />
+            <Route exact path="/login" component={LoginPage} />
 
-            <Parallax filter image={require('assets/img/landing-bg.jpg')}>
-              <div className={classes.container}>
-                <GridContainer justify="center">
-                  <GridItem xs={12} sm={12} md={6}>
-                    <Route exact path="/" component={LandingPage} />
-                    <Route exact path="/register" component={RegisterPage} />
-                    <Route exact path="/login" component={LoginPage} />
+            <Route exact path="/register" component={RegisterPage} />
+            <Switch>
+              <PrivateRoute exact path="/dashboard" component={Dashboard} />
+            </Switch>
 
-                    <Switch>
-                      <PrivateRoute
+            <Switch>
+              <PrivateRoute
+                exact
+                path="/create-profile"
+                component={CreateProfile}
+              />
+            </Switch>
+
+            <Switch>
+              <PrivateRoute
+                exact
+                path="/edit-profile"
+                component={EditProfile}
+              />
+            </Switch>
+
+            {/* <Route exact path="/profile" component={ProfilePage} /> */}
+            {/* <Parallax filter image={require('assets/img/landing-bg.jpg')}>
+                <div className={classes.container}>
+                  <GridContainer justify="center">
+                    <GridItem xs={12} sm={12} md={6}>
+                      <Route exact path="/" component={LandingPage} />
+                      <Route exact path="/register" component={RegisterPage} />
+                      
+
+                      <Switch>
+                        <PrivateRoute
+                          exact
+                          path="/dashboard"
+                          component={Dashboard}
+                        />
+                      </Switch>
+                    </GridItem>
+                  </GridContainer>
+
+                  <GridContainer justify="center">
+                    <GridItem xs={12} sm={12} md={12}>
+                      <Route
                         exact
-                        path="/dashboard"
-                        component={Dashboard}
+                        path="/create-profile"
+                        component={CreateProfileHeader}
                       />
-                    </Switch>
-                  </GridItem>
-                </GridContainer>
-
-                <GridContainer justify="center">
-                  <GridItem xs={12} sm={12} md={12}>
-                    <Route
-                      exact
-                      path="/create-profile"
-                      component={CreateProfileHeader}
-                    />
-                  </GridItem>
-                  {/* <GridItem
-                    xs={12}
-                    sm={12}
-                    md={12}
-                    // className={classes.marginLeft}
-                  >
-                    <ArrowDownwardSharp />
-                  </GridItem> */}
-                </GridContainer>
-              </div>
-            </Parallax>
+                    </GridItem>
+                    
+                  </GridContainer>
+                </div>
+              </Parallax> */}
 
             <div className={classes.container}>
               <GridContainer justify="center">
-                <GridItem xs={12} sm={12} md={12}>
-                  <Switch>
-                    <PrivateRoute
-                      exact
-                      path="/create-profile"
-                      component={CreateProfile}
-                    />
-                  </Switch>
-                </GridItem>
+                <GridItem xs={12} sm={12} md={12} />
               </GridContainer>
             </div>
-
-            {/* <Switch>
-            {indexRoutes.map((prop, key) => {
-              return (
-                <Route path={prop.path} key={key} component={prop.component} />
-              );
-            })}
-          </Switch> */}
           </div>
         </Router>
       </Provider>

@@ -18,7 +18,9 @@ import CardBody from 'components/Card/CardBody.jsx';
 import CardHeader from 'components/Card/CardHeader.jsx';
 import CardFooter from 'components/Card/CardFooter.jsx';
 import CustomInput from 'components/CustomInput/CustomInput.jsx';
-
+import Parallax from '../../components/Parallax/Parallax';
+import GridContainer from '../../components/Grid/GridContainer.jsx';
+import GridItem from '../../components/Grid/GridItem.jsx';
 import loginPageStyle from 'assets/jss/material-kit-react/views/loginPage.jsx';
 
 import { connect } from 'react-redux';
@@ -86,13 +88,16 @@ class RegisterPage extends React.Component {
     // console.log(errors);
 
     return (
-      <div className={classes.container}>
-        <Card className={classes[this.state.cardAnimaton]}>
-          <form className={classes.form} onSubmit={this.onSubmit}>
-            <CardHeader color="primary" className={classes.cardHeader}>
-              <h3>Register</h3>
+      <Parallax filter image={require('assets/img/landing-bg.jpg')}>
+        <div className={classes.container}>
+          <GridContainer justify="center">
+            <GridItem xs={12} sm={12} md={6}>
+              <Card className={classes[this.state.cardAnimaton]}>
+                <form className={classes.form} onSubmit={this.onSubmit}>
+                  <CardHeader color="primary" className={classes.cardHeader}>
+                    <h3>Register</h3>
 
-              {/* <div className={classes.socialLine}>
+                    {/* <div className={classes.socialLine}>
                 <Button
                   justIcon
                   href="#pablo"
@@ -121,107 +126,114 @@ class RegisterPage extends React.Component {
                   <i className={'fab fa-google-plus-g'} />
                 </Button>
               </div> */}
-            </CardHeader>
-            {/* <p className={classes.divider}>Or Be Classical</p> */}
-            <CardBody>
-              <CustomInput
-                labelText={
-                  errors.name ? errors.name.toString() : 'First Name...'
-                }
-                id="name"
-                // {...(errors.name ? error : {})}
-                formControlProps={{
-                  fullWidth: true
-                }}
-                error={errors.name ? true : ''}
-                // labelProps={error}
-                inputProps={{
-                  name: 'name',
-                  type: 'text',
-                  value: this.state.name,
-                  onChange: this.onChange,
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <People className={classes.inputIconsColor} />
-                    </InputAdornment>
-                  )
-                }}
-              />
+                  </CardHeader>
+                  {/* <p className={classes.divider}>Or Be Classical</p> */}
+                  <CardBody>
+                    <CustomInput
+                      labelText={
+                        errors.name ? errors.name.toString() : 'First Name...'
+                      }
+                      id="name"
+                      // {...(errors.name ? error : {})}
+                      formControlProps={{
+                        fullWidth: true
+                      }}
+                      error={errors.name ? true : ''}
+                      // labelProps={error}
+                      inputProps={{
+                        name: 'name',
+                        type: 'text',
+                        value: this.state.name,
+                        onChange: this.onChange,
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <People className={classes.inputIconsColor} />
+                          </InputAdornment>
+                        )
+                      }}
+                    />
 
-              <CustomInput
-                labelText={errors.email ? errors.email.toString() : 'Email...'}
-                id="email"
-                formControlProps={{
-                  fullWidth: true
-                }}
-                error={errors.email ? true : ''}
-                inputProps={{
-                  type: 'email',
-                  value: this.state.email,
-                  onChange: this.onChange,
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <Email className={classes.inputIconsColor} />
-                    </InputAdornment>
-                  )
-                }}
-              />
-              <CustomInput
-                labelText={
-                  errors.password ? errors.password.toString() : 'Password...'
-                }
-                id="password"
-                formControlProps={{
-                  fullWidth: true
-                }}
-                error={errors.password ? true : ''}
-                inputProps={{
-                  type: 'password',
-                  value: this.state.password,
-                  onChange: this.onChange,
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <Icon className={classes.inputIconsColor}>
-                        lock_outline
-                      </Icon>
-                    </InputAdornment>
-                  )
-                }}
-              />
+                    <CustomInput
+                      labelText={
+                        errors.email ? errors.email.toString() : 'Email...'
+                      }
+                      id="email"
+                      formControlProps={{
+                        fullWidth: true
+                      }}
+                      error={errors.email ? true : ''}
+                      inputProps={{
+                        type: 'email',
+                        value: this.state.email,
+                        onChange: this.onChange,
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <Email className={classes.inputIconsColor} />
+                          </InputAdornment>
+                        )
+                      }}
+                    />
+                    <CustomInput
+                      labelText={
+                        errors.password
+                          ? errors.password.toString()
+                          : 'Password...'
+                      }
+                      id="password"
+                      formControlProps={{
+                        fullWidth: true
+                      }}
+                      error={errors.password ? true : ''}
+                      inputProps={{
+                        type: 'password',
+                        value: this.state.password,
+                        onChange: this.onChange,
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <Icon className={classes.inputIconsColor}>
+                              lock_outline
+                            </Icon>
+                          </InputAdornment>
+                        )
+                      }}
+                    />
 
-              <CustomInput
-                labelText={
-                  errors.password2
-                    ? errors.password2.toString()
-                    : 'Confirm Password...'
-                }
-                id="password2"
-                formControlProps={{
-                  fullWidth: true
-                }}
-                error={errors.password2 ? true : ''}
-                inputProps={{
-                  type: 'password',
-                  value: this.state.password2,
-                  onChange: this.onChange,
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <Icon className={classes.inputIconsColor}>
-                        lock_outline
-                      </Icon>
-                    </InputAdornment>
-                  )
-                }}
-              />
-            </CardBody>
-            <CardFooter className={classes.cardFooter}>
-              <Button color="success" size="lg" type="submit" round>
-                Register
-              </Button>
-            </CardFooter>
-          </form>
-        </Card>
-      </div>
+                    <CustomInput
+                      labelText={
+                        errors.password2
+                          ? errors.password2.toString()
+                          : 'Confirm Password...'
+                      }
+                      id="password2"
+                      formControlProps={{
+                        fullWidth: true
+                      }}
+                      error={errors.password2 ? true : ''}
+                      inputProps={{
+                        type: 'password',
+                        value: this.state.password2,
+                        onChange: this.onChange,
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <Icon className={classes.inputIconsColor}>
+                              lock_outline
+                            </Icon>
+                          </InputAdornment>
+                        )
+                      }}
+                    />
+                  </CardBody>
+                  <CardFooter className={classes.cardFooter}>
+                    <Button color="success" size="lg" type="submit" round>
+                      Register
+                    </Button>
+                  </CardFooter>
+                </form>
+              </Card>
+            </GridItem>
+          </GridContainer>
+        </div>
+      </Parallax>
     );
   }
 }

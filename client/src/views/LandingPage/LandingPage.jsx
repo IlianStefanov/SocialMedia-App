@@ -8,7 +8,9 @@ import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 // @material-ui/icons
 import Button from 'components/CustomButtons/Button.jsx';
-
+import Parallax from '../../components/Parallax/Parallax';
+import GridContainer from '../../components/Grid/GridContainer.jsx';
+import GridItem from '../../components/Grid/GridItem.jsx';
 const dashboardRoutes = [];
 
 class LandingPage extends React.Component {
@@ -21,11 +23,15 @@ class LandingPage extends React.Component {
   render() {
     const { classes, ...rest } = this.props;
     return (
-      <div>
-        <h1 className={classes.title}>Your Story Starts With Us.</h1>
-        <h4>Welcome to the Dev connector.</h4>
-        <br />
-        {/* <Button
+      <Parallax filter image={require('assets/img/landing-bg.jpg')}>
+        <div className={classes.container}>
+          <GridContainer justify="center">
+            <GridItem xs={12} sm={12} md={6}>
+              <div>
+                <h1 className={classes.title}>Your Story Starts With Us.</h1>
+                <h4>Welcome to the Dev connector.</h4>
+                <br />
+                {/* <Button
                   color="danger"
                   size="lg"
                   href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
@@ -35,16 +41,20 @@ class LandingPage extends React.Component {
                   <i className="fas fa-play" />
                   Watch video
                 </Button> */}
-        <Button size="lg" color="primary" round href="login">
-          {/* <i className="fas fa-play" /> With Icon */}
-          Login
-        </Button>
+                <Button size="lg" color="primary" round href="login">
+                  {/* <i className="fas fa-play" /> With Icon */}
+                  Login
+                </Button>
 
-        <Button size="lg" color="noColor" round href="register">
-          {/* <i className="fas fa-play" /> With Icon */}
-          Register
-        </Button>
-      </div>
+                <Button size="lg" color="noColor" round href="register">
+                  {/* <i className="fas fa-play" /> With Icon */}
+                  Register
+                </Button>
+              </div>
+            </GridItem>
+          </GridContainer>
+        </div>
+      </Parallax>
     );
   }
 }

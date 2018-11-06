@@ -23,8 +23,9 @@ import CardFooter from 'components/Card/CardFooter.jsx';
 import CustomInput from 'components/CustomInput/CustomInput.jsx';
 import SelectListGroup from '../common/SelectListGroup';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
-import ProfileHeader from './create-profileHeader';
-import { createProfile } from '../../actions/profileActions';
+import ProfileHeader from '../create-profile/create-profileHeader';
+import { createProfile, getCurrentProfile } from '../../actions/profileActions';
+import isEmpty from '../../validation/is-empty';
 import {
   faGlobeAmericas,
   faBuilding,
@@ -38,7 +39,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-class CreateProfile extends Component {
+class EditProfile extends Component {
   constructor(props) {
     super(props);
     // we use this to make the card to appear after the page has been rendered
@@ -67,11 +68,31 @@ class CreateProfile extends Component {
   }
 
   // Lifecycle methods
+  componentDidMount() {
+    this.props.getCurrentProfile();
+  }
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({
         errors: nextProps.errors
       });
+    }
+
+    if (nextProps.profile) {
+      const profile = nextProps.profile.profile;
+
+      this.setState();
+
+      // Bring skills array
+      const skillsCSV = profile.skills.join(', ');
+
+      //Check if exists
+      profile.company = !isEmpty(profile.company) ? profile.company : '';
+      profile.website = !isEmpty(profile.website) ? profile.website : '';
+      profile.location = !isEmpty(profile.location) ? profile.location : '';
+      profile.githubusername = !isEmpty(profile.githubusername)
+        ? profile.githubusername
+        : '';
     }
   }
 
@@ -112,17 +133,6 @@ class CreateProfile extends Component {
   render() {
     const { classes, ...rest } = this.props;
     const { errors, displaySocialInputs } = this.state;
-
-    // const options = [
-    //   { label: 'None', value: '' },
-    //   { label: 'Developer', value: 'Developer' },
-    //   { label: 'Junior Developer', value: 'Junior Developer' },
-    //   { label: 'Senior Developer', value: 'Senior Developer' },
-    //   { label: 'Manager', value: 'Manager' },
-    //   { label: 'Student or learning', value: 'Student or learning' },
-    //   { label: 'Intern', value: 'Intern' },
-    //   { label: 'Other', value: 'Other' }
-    // ];
 
     let socialInputs;
     if (displaySocialInputs) {
@@ -227,8 +237,6 @@ class CreateProfile extends Component {
     }
 
     return (
-      //   <div className={classNames(classes.main, classes.mainRaised)}>
-      //   <div className={classes.container}>
       <div>
         <Parallax filter image={require('assets/img/landing-bg.jpg')}>
           <div className={classes.container}>
@@ -241,40 +249,6 @@ class CreateProfile extends Component {
             <GridItem xs={12} sm={12} md={8}>
               <Card className={classes[this.state.cardAnimaton]}>
                 <form className={classes.form} onSubmit={this.onSubmit}>
-                  {/* <CardHeader color="primary" className={classes.cardHeader}>
-                <h3>Register</h3> */}
-
-                  {/* <div className={classes.socialLine}>
-                <Button
-                  justIcon
-                  href="#pablo"
-                  target="_blank"
-                  color="transparent"
-                  onClick={e => e.preventDefault()}
-                >
-                  <i className={'fab fa-twitter'} />
-                </Button>
-                <Button
-                  justIcon
-                  href="#pablo"
-                  target="_blank"
-                  color="transparent"
-                  onClick={e => e.preventDefault()}
-                >
-                  <i className={'fab fa-facebook'} />
-                </Button>
-                <Button
-                  justIcon
-                  href="#pablo"
-                  target="_blank"
-                  color="transparent"
-                  onClick={e => e.preventDefault()}
-                >
-                  <i className={'fab fa-google-plus-g'} />
-                </Button>
-              </div> */}
-                  {/* </CardHeader> */}
-                  {/* <p className={classes.divider}>Or Be Classical</p> */}
                   <CardBody>
                     <h3>Create Profile</h3>
                     <GridContainer justify="center">
@@ -302,25 +276,6 @@ class CreateProfile extends Component {
                             )
                           }}
                         />
-
-                        {/* <SelectListGroup
-                          labelText="Status"
-                          id="status"
-                          formControlProps={{
-                            fullWidth: true
-                          }}
-                          error
-                          value={this.state.status}
-                          error={errors.status}
-                          options={options}
-                          inputProps={{
-                            name: 'status',
-                            type: 'text',
-                            value: this.state.status,
-                            onChange: this.onChange
-                          }}
-                          info="Give us an idea of where you are at in your career"
-                        /> */}
 
                         <CustomInput
                           labelText="Status"
@@ -393,26 +348,6 @@ class CreateProfile extends Component {
                             )
                           }}
                         />
-                        {/* <CustomInput
-                  labelText={
-                    errors.email ? errors.email.toString() : 'Status...'
-                  }
-                  id="status"
-                  formControlProps={{
-                    fullWidth: true
-                  }}
-                  error={errors.email ? true : ''}
-                  inputProps={{
-                    type: 'text',
-                    value: this.state.email,
-                    onChange: this.onChange,
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <Email className={classes.inputIconsColor} />
-                      </InputAdornment>
-                    )
-                  }}
-                /> */}
 
                         <CustomInput
                           labelText={'Website...'}
@@ -434,31 +369,6 @@ class CreateProfile extends Component {
                           }}
                         />
 
-                        {/* <CustomInput
-                  labelText={
-                    errors.password2
-                      ? errors.password2.toString()
-                      : 'Confirm Password...'
-                  }
-                  id="password2"
-                  formControlProps={{
-                    fullWidth: true
-                  }}
-                  error={errors.password2 ? true : ''}
-                  inputProps={{
-                    type: 'password',
-                    value: this.state.password2,
-                    onChange: this.onChange,
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <Icon className={classes.inputIconsColor}>
-                          lock_outline
-                        </Icon>
-                      </InputAdornment>
-                    )
-                  }}
-                /> */}
-
                         <TextAreaFieldGroup
                           placeholder="Biography"
                           name="bio"
@@ -466,8 +376,6 @@ class CreateProfile extends Component {
                           onChange={this.onChange}
                           info="Give us an idea of where you are at in your career"
                         />
-
-                        {/* SOCIAL MEDIA LINKS */}
 
                         <Button
                           color="success"
@@ -480,14 +388,9 @@ class CreateProfile extends Component {
                           <i className={'fas fa-plus'} />
                         </Button>
 
-                        {/* <Button color="success" round>
-                  <i className={'fas fa-plus'} /> <span> </span> Show Social
-                  Links
-                </Button> */}
-
                         {socialInputs}
                       </GridItem>
-                      {/* <hr /> */}
+
                       <GridItem xs={12} sm={12} md={6} />
 
                       <GridItem xs={12} sm={12} md={6} />
@@ -508,9 +411,11 @@ class CreateProfile extends Component {
   }
 }
 
-CreateProfile.propTypes = {
+EditProfile.propTypes = {
   profile: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
+  createProfile: PropTypes.func.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -521,6 +426,6 @@ const mapStateToProps = state => ({
 export default withStyles(landingPageStyle)(
   connect(
     mapStateToProps,
-    { createProfile }
-  )(withRouter(CreateProfile))
+    { createProfile, getCurrentProfile }
+  )(withRouter(EditProfile))
 );

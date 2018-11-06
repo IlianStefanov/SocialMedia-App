@@ -111,13 +111,15 @@ function SelectListGroup({ ...props }) {
 
   return (
     <FormControl {...formControlProps} className={formControlClasses}>
-      <InputLabel
-        className={classes.labelRoot + ' ' + labelClasses}
-        htmlFor={id}
-        {...labelProps}
-      >
-        {labelText}
-      </InputLabel>
+      {labelText !== undefined ? (
+        <InputLabel
+          className={classes.labelRoot + ' ' + labelClasses}
+          htmlFor={id}
+          {...labelProps}
+        >
+          {labelText}
+        </InputLabel>
+      ) : null}
       <Select
         classes={{
           input: inputClasses,
@@ -135,7 +137,16 @@ function SelectListGroup({ ...props }) {
 }
 
 SelectListGroup.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  labelText: PropTypes.node,
+  labelProps: PropTypes.object,
+  id: PropTypes.string,
+  inputProps: PropTypes.object,
+  formControlProps: PropTypes.object,
+  inputRootCustomClasses: PropTypes.string,
+  error: PropTypes.bool,
+  success: PropTypes.bool,
+  white: PropTypes.bool
 };
 
 export default withStyles(selectGroupStyle)(SelectListGroup);

@@ -4,7 +4,7 @@ import { TextField } from '@material-ui/core';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
-import selectGroupStyle from '../../assets/jss/material-kit-react/components/selectInputStyle';
+import textAreaStyle from '../../assets/jss/material-kit-react/components/textAreaStyle';
 
 const TextAreaFieldGroup = ({ ...props }) => {
   const { name, placeholder, value, error, info, onChange, classes } = props;
@@ -32,4 +32,4 @@ TextAreaFieldGroup.propTypes = {
   onChange: PropTypes.func.isrequired
 };
 
-export default withStyles(selectGroupStyle)(TextAreaFieldGroup);
+export default withStyles(textAreaStyle)(TextAreaFieldGroup);

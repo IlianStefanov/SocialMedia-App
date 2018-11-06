@@ -45,3 +45,18 @@ hr {
   border: 10px #aaaaaa;
   margin: 0 15px;
 }
+.AlignLeft {
+  text-align: left !important;
+}
+.AlignRight {
+  text-align: right !important;
+}
+
+@media (max-width: 960px) {
+  .AlignLeft {
+    text-align: center !important;
+  }
+  .AlignRight {
+    text-align: center !important;
+  }
+}

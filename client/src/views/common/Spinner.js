@@ -1,6 +1,7 @@
 import React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import spinnerStyles from '../../assets/jss/material-kit-react/components/spinnerStyle';
+import Parallax from '../../components/Parallax/Parallax';
 
 // const Spinner = () => (
 //   <div className="spinner">
@@ -32,20 +33,22 @@ const Spinner = ({
   disabled
 }) => {
   return (
-    <div className={classes.spinner}>
-      <div className={classes.spinnerElement} />
-      <div className={classes.spinnerElement} />
-      <div className={classes.spinnerElement} />
-      <div className={classes.spinnerElement} />
-      <div className={classes.spinnerElement} />
-      <div className={classes.spinnerElement} />
-      <div className={classes.spinnerElement} />
-      <div className={classes.spinnerElement} />
-      <div className={classes.spinnerElement} />
-      <div className={classes.spinnerElement} />
-      <div className={classes.spinnerElement} />
-      <div className={classes.spinnerElement} />
-    </div>
+    <Parallax filter image={require('assets/img/landing-bg.jpg')}>
+      <div className={classes.spinner}>
+        <div className={classes.spinnerElement} />
+        <div className={classes.spinnerElement} />
+        <div className={classes.spinnerElement} />
+        <div className={classes.spinnerElement} />
+        <div className={classes.spinnerElement} />
+        <div className={classes.spinnerElement} />
+        <div className={classes.spinnerElement} />
+        <div className={classes.spinnerElement} />
+        <div className={classes.spinnerElement} />
+        <div className={classes.spinnerElement} />
+        <div className={classes.spinnerElement} />
+        <div className={classes.spinnerElement} />
+      </div>
+    </Parallax>
   );
 };
 

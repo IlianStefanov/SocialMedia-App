@@ -4,7 +4,12 @@ const spinnerStyle = {
     display: 'inline-block',
     position: 'relative',
     width: '64px',
-    height: '64px'
+    height: '64px',
+    position: 'absolute',
+    top: '45%',
+    bottom: '0',
+    left: '45%',
+    right: '0'
   },
   spinnerElement: {
     transformOrigin: '32px 32px',

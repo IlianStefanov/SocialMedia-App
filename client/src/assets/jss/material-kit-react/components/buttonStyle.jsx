@@ -20,7 +20,7 @@ const buttonStyle = {
     borderRadius: '3px',
     position: 'relative',
     padding: '12px 30px',
-    margin: '.3125rem 1px',
+    margin: '.3125rem ',
     fontSize: '12px',
     fontWeight: '400',
     textTransform: 'uppercase',
@@ -83,8 +83,8 @@ const buttonStyle = {
       backgroundColor: primaryColor,
       boxShadow:
         '0 14px 26px -12px rgba(156, 39, 176, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(156, 39, 176, 0.2)'
-    },
-    border: '2px solid ' + primaryColor
+    }
+    // border: '2px solid ' + primaryColor
   },
 
   info: {
@@ -167,6 +167,18 @@ const buttonStyle = {
         '0 14px 26px -12px rgba(59, 89, 152, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(59, 89, 152, 0.2)'
     }
   },
+  linkedin: {
+    backgroundColor: '#3b5998',
+    color: '#fff',
+    boxShadow:
+      '0 2px 2px 0 rgba(221, 75, 57, 0.14), 0 3px 1px -2px rgba(221, 75, 57, 0.2), 0 1px 5px 0 rgba(221, 75, 57, 0.12)',
+    '&:hover,&:focus': {
+      backgroundColor: '#3b5998',
+      color: '#fff',
+      boxShadow:
+        '0 14px 26px -12px rgba(221, 75, 57, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(221, 75, 57, 0.2)'
+    }
+  },
   google: {
     backgroundColor: '#dd4b39',
     color: '#fff',
@@ -179,6 +191,7 @@ const buttonStyle = {
         '0 14px 26px -12px rgba(221, 75, 57, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(221, 75, 57, 0.2)'
     }
   },
+
   github: {
     backgroundColor: '#333333',
     color: '#fff',

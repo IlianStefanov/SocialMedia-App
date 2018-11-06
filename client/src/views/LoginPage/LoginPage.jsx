@@ -19,7 +19,9 @@ import CardBody from 'components/Card/CardBody.jsx';
 import CardHeader from 'components/Card/CardHeader.jsx';
 import CardFooter from 'components/Card/CardFooter.jsx';
 import CustomInput from 'components/CustomInput/CustomInput.jsx';
-
+import Parallax from '../../components/Parallax/Parallax';
+import GridContainer from '../../components/Grid/GridContainer.jsx';
+import GridItem from '../../components/Grid/GridItem.jsx';
 import loginPageStyle from 'assets/jss/material-kit-react/views/loginPage.jsx';
 
 class LoginPage extends React.Component {
@@ -83,92 +85,102 @@ class LoginPage extends React.Component {
 
     const { errors } = this.state;
     return (
-      <div className={classes.container}>
-        <Card className={classes[this.state.cardAnimaton]}>
-          <form className={classes.form} onSubmit={this.onSubmit}>
-            <CardHeader color="primary" className={classes.cardHeader}>
-              <h4>Login</h4>
-              <div className={classes.socialLine}>
-                <Button
-                  justIcon
-                  href="#pablo"
-                  target="_blank"
-                  color="transparent"
-                  onClick={e => e.preventDefault()}
-                >
-                  <i className={'fab fa-twitter'} />
-                </Button>
-                <Button
-                  justIcon
-                  href="#pablo"
-                  target="_blank"
-                  color="transparent"
-                  onClick={e => e.preventDefault()}
-                >
-                  <i className={'fab fa-facebook'} />
-                </Button>
-                <Button
-                  justIcon
-                  href="#pablo"
-                  target="_blank"
-                  color="transparent"
-                  onClick={e => e.preventDefault()}
-                >
-                  <i className={'fab fa-google-plus-g'} />
-                </Button>
-              </div>
-            </CardHeader>
-            <p className={classes.divider}>Or Be Classical</p>
-            <CardBody>
-              <CustomInput
-                labelText={errors.email ? errors.email.toString() : 'Email...'}
-                id="email"
-                formControlProps={{
-                  fullWidth: true
-                }}
-                error={errors.email ? true : ''}
-                inputProps={{
-                  type: 'email',
-                  value: this.state.email,
-                  onChange: this.onChange,
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <Email className={classes.inputIconsColor} />
-                    </InputAdornment>
-                  )
-                }}
-              />
-              <CustomInput
-                labelText={
-                  errors.password ? errors.password.toString() : 'Password...'
-                }
-                id="password"
-                formControlProps={{
-                  fullWidth: true
-                }}
-                error={errors.password ? true : ''}
-                inputProps={{
-                  type: 'password',
-                  value: this.state.password,
-                  onChange: this.onChange,
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <Icon className={classes.inputIconsColor}>
-                        lock_outline
-                      </Icon>
-                    </InputAdornment>
-                  )
-                }}
-              />
-            </CardBody>
-            <CardFooter className={classes.cardFooter}>
-              <Button color="success" size="lg" type="submit" round>
-                Log in
-              </Button>
-            </CardFooter>
-          </form>
-        </Card>
-      </div>
+      <Parallax filter image={require('assets/img/landing-bg.jpg')}>
+        <div className={classes.container}>
+          <GridContainer justify="center">
+            <GridItem xs={12} sm={12} md={6}>
+              <Card className={classes[this.state.cardAnimaton]}>
+                <form className={classes.form} onSubmit={this.onSubmit}>
+                  <CardHeader color="primary" className={classes.cardHeader}>
+                    <h4>Login</h4>
+                    <div className={classes.socialLine}>
+                      <Button
+                        justIcon
+                        href="#pablo"
+                        target="_blank"
+                        color="transparent"
+                        onClick={e => e.preventDefault()}
+                      >
+                        <i className={'fab fa-twitter'} />
+                      </Button>
+                      <Button
+                        justIcon
+                        href="#pablo"
+                        target="_blank"
+                        color="transparent"
+                        onClick={e => e.preventDefault()}
+                      >
+                        <i className={'fab fa-facebook'} />
+                      </Button>
+                      <Button
+                        justIcon
+                        href="#pablo"
+                        target="_blank"
+                        color="transparent"
+                        onClick={e => e.preventDefault()}
+                      >
+                        <i className={'fab fa-google-plus-g'} />
+                      </Button>
+                    </div>
+                  </CardHeader>
+                  <p className={classes.divider}>Or Be Classical</p>
+                  <CardBody>
+                    <CustomInput
+                      labelText={
+                        errors.email ? errors.email.toString() : 'Email...'
+                      }
+                      id="email"
+                      formControlProps={{
+                        fullWidth: true
+                      }}
+                      error={errors.email ? true : ''}
+                      inputProps={{
+                        type: 'email',
+                        value: this.state.email,
+                        onChange: this.onChange,
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <Email className={classes.inputIconsColor} />
+                          </InputAdornment>
+                        )
+                      }}
+                    />
+                    <CustomInput
+                      labelText={
+                        errors.password
+                          ? errors.password.toString()
+                          : 'Password...'
+                      }
+                      id="password"
+                      formControlProps={{
+                        fullWidth: true
+                      }}
+                      error={errors.password ? true : ''}
+                      inputProps={{
+                        type: 'password',
+                        value: this.state.password,
+                        onChange: this.onChange,
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <Icon className={classes.inputIconsColor}>
+                              lock_outline
+                            </Icon>
+                          </InputAdornment>
+                        )
+                      }}
+                    />
+                  </CardBody>
+                  <CardFooter className={classes.cardFooter}>
+                    <Button color="success" size="lg" type="submit" round>
+                      Log in
+                    </Button>
+                  </CardFooter>
+                </form>
+              </Card>
+            </GridItem>
+          </GridContainer>
+        </div>
+      </Parallax>
     );
   }
 }

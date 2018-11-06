@@ -67,7 +67,7 @@ class CreateProfileHeader extends Component {
       //   <div className={classNames(classes.main, classes.mainRaised)}>
       //   <div className={classes.container}>
       <GridContainer>
-        <GridItem xs={12} sm={12} md={6} className={classes.alignLeft}>
+        <GridItem xs={12} sm={12} md={6} className="AlignLeft">
           <h1>Welcome {user.name} </h1>
           <h4>
             Feel free to create and update your profile by submiting the fileds
@@ -75,7 +75,7 @@ class CreateProfileHeader extends Component {
           </h4>
         </GridItem>
 
-        <GridItem xs={12} sm={12} md={6} className={classes.alignRight}>
+        <GridItem xs={12} sm={12} md={6} className="AlignRight">
           <img
             src={user.avatar}
             alt="..."
