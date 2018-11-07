@@ -11,20 +11,7 @@ import { withRouter } from 'react-router-dom';
 import Email from '@material-ui/icons/Email';
 import People from '@material-ui/icons/People';
 import InputAdornment from '@material-ui/core/InputAdornment';
-// core components
-import GridContainer from '../../components/Grid/GridContainer.jsx';
-import GridItem from '../../components/Grid/GridItem.jsx';
-import Parallax from '../../components/Parallax/Parallax';
-import Button from 'components/CustomButtons/Button.jsx';
-import Card from 'components/Card/Card.jsx';
-import CardBody from 'components/Card/CardBody.jsx';
-import CardHeader from 'components/Card/CardHeader.jsx';
-import CardFooter from 'components/Card/CardFooter.jsx';
-import CustomInput from 'components/CustomInput/CustomInput.jsx';
-import SelectListGroup from '../common/SelectListGroup';
-import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
-import ProfileHeader from './create-profileHeader';
-import { createProfile } from '../../actions/profileActions';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faGlobeAmericas,
   faBuilding,
@@ -36,7 +23,21 @@ import {
   faCheckSquare,
   faChalkboardTeacher
 } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// core components
+import GridContainer from '../../components/Grid/GridContainer.jsx';
+import GridItem from '../../components/Grid/GridItem.jsx';
+import Parallax from '../../components/Parallax/Parallax';
+import Button from 'components/CustomButtons/Button.jsx';
+import Card from 'components/Card/Card.jsx';
+import CardBody from 'components/Card/CardBody.jsx';
+import CardHeader from 'components/Card/CardHeader.jsx';
+import CardFooter from 'components/Card/CardFooter.jsx';
+import CustomInput from 'components/CustomInput/CustomInput.jsx';
+import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
+import SelectListGroup from '../common/SelectListGroup';
+
+import ProfileHeader from './create-profileHeader';
+import { createProfile } from '../../actions/profileActions';
 
 class CreateProfile extends Component {
   constructor(props) {
@@ -303,25 +304,6 @@ class CreateProfile extends Component {
                           }}
                         />
 
-                        {/* <SelectListGroup
-                          labelText="Status"
-                          id="status"
-                          formControlProps={{
-                            fullWidth: true
-                          }}
-                          error
-                          value={this.state.status}
-                          error={errors.status}
-                          options={options}
-                          inputProps={{
-                            name: 'status',
-                            type: 'text',
-                            value: this.state.status,
-                            onChange: this.onChange
-                          }}
-                          info="Give us an idea of where you are at in your career"
-                        /> */}
-
                         <CustomInput
                           labelText="Status"
                           id="status"
@@ -495,7 +477,7 @@ class CreateProfile extends Component {
                   </CardBody>
                   <CardFooter className={classes.cardFooter}>
                     <Button color="success" size="lg" type="submit" round>
-                      Register
+                      Create Profile
                     </Button>
                   </CardFooter>
                 </form>

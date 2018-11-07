@@ -41,12 +41,12 @@ class LandingPage extends React.Component {
                   <i className="fas fa-play" />
                   Watch video
                 </Button> */}
-                <Button size="lg" color="primary" round href="login">
-                  {/* <i className="fas fa-play" /> With Icon */}
+                {/* <Button size="lg" color="primary" round href="login">
+                  
                   Login
-                </Button>
+                </Button> */}
 
-                <Button size="lg" color="noColor" round href="register">
+                <Button size="lg" color="primary" round href="register">
                   {/* <i className="fas fa-play" /> With Icon */}
                   Register
                 </Button>

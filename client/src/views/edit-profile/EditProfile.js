@@ -78,14 +78,13 @@ class EditProfile extends Component {
       });
     }
 
-    if (nextProps.profile) {
+    if (nextProps.profile.profile) {
       const profile = nextProps.profile.profile;
-
-      this.setState();
 
       // Bring skills array
       const skillsCSV = profile.skills.join(', ');
 
+      console.log(profile.social);
       //Check if exists
       profile.company = !isEmpty(profile.company) ? profile.company : '';
       profile.website = !isEmpty(profile.website) ? profile.website : '';
@@ -93,6 +92,39 @@ class EditProfile extends Component {
       profile.githubusername = !isEmpty(profile.githubusername)
         ? profile.githubusername
         : '';
+      profile.social = !isEmpty(profile.social) ? profile.social : {};
+      profile.social.facebook = !isEmpty(profile.social.facebook)
+        ? profile.social.facebook
+        : '';
+      profile.social.twitter = !isEmpty(profile.social.twitter)
+        ? profile.social.twitter
+        : '';
+      profile.social.instagram = !isEmpty(profile.social.instagram)
+        ? profile.social.instagram
+        : '';
+      profile.social.linkedin = !isEmpty(profile.social.linkedin)
+        ? profile.social.linkedin
+        : '';
+      profile.social.youtube = !isEmpty(profile.social.youtube)
+        ? profile.social.youtube
+        : '';
+
+      // Set components field state
+      this.setState({
+        handle: profile.handle,
+        company: profile.company,
+        website: profile.website,
+        location: profile.location,
+        status: profile.status,
+        skills: skillsCSV,
+        githubusername: profile.githubusername,
+        bio: profile.bio,
+        twitter: profile.social.twitter,
+        facebook: profile.social.facebook,
+        linkedin: profile.social.linkedin,
+        youtube: profile.social.youtube,
+        instagram: profile.social.instagram
+      });
     }
   }
 
@@ -136,104 +168,6 @@ class EditProfile extends Component {
 
     let socialInputs;
     if (displaySocialInputs) {
-      socialInputs = (
-        <div>
-          <CustomInput
-            labelText={'Facebook profile...'}
-            id="facebook"
-            formControlProps={{
-              fullWidth: true
-            }}
-            inputProps={{
-              name: 'facebook',
-              type: 'text',
-              value: this.state.facebook,
-              onChange: this.onChange,
-              startAdornment: (
-                <InputAdornment position="start">
-                  <i className={'fab fa-facebook'} />
-                </InputAdornment>
-              )
-            }}
-          />
-
-          <CustomInput
-            labelText={'Instagram profile...'}
-            id="instagram"
-            formControlProps={{
-              fullWidth: true
-            }}
-            inputProps={{
-              name: 'instagram',
-              type: 'text',
-              value: this.state.instagram,
-              onChange: this.onChange,
-              startAdornment: (
-                <InputAdornment position="start">
-                  <i className={'fab fa-instagram'} />
-                </InputAdornment>
-              )
-            }}
-          />
-
-          <CustomInput
-            labelText={'LinkedIn profile...'}
-            id="linkedin"
-            formControlProps={{
-              fullWidth: true
-            }}
-            inputProps={{
-              name: 'linkedin',
-              type: 'text',
-              value: this.state.linkedin,
-              onChange: this.onChange,
-              startAdornment: (
-                <InputAdornment position="start">
-                  <i className={'fab fa-linkedin'} />
-                </InputAdornment>
-              )
-            }}
-          />
-
-          <CustomInput
-            labelText={'Twitter profile...'}
-            id="twitter"
-            formControlProps={{
-              fullWidth: true
-            }}
-            inputProps={{
-              name: 'twitter',
-              type: 'text',
-              value: this.state.twitter,
-              onChange: this.onChange,
-              startAdornment: (
-                <InputAdornment position="start">
-                  <i className={'fab fa-twitter'} />
-                </InputAdornment>
-              )
-            }}
-          />
-
-          <CustomInput
-            labelText={'GitHub profile...'}
-            id="github"
-            formControlProps={{
-              fullWidth: true
-            }}
-            inputProps={{
-              name: 'github',
-              type: 'text',
-              value: this.state.github,
-              onChange: this.onChange,
-              startAdornment: (
-                <InputAdornment position="start">
-                  <i className={'fab fa-github'} />
-                </InputAdornment>
-              )
-            }}
-          />
-        </div>
-      );
     }
 
     return (
@@ -377,16 +311,102 @@ class EditProfile extends Component {
                           info="Give us an idea of where you are at in your career"
                         />
 
-                        <Button
-                          color="success"
-                          size="sm"
-                          type="button"
-                          round
-                          justIcon
-                          onClick={this.clickLinkHandle}
-                        >
-                          <i className={'fas fa-plus'} />
-                        </Button>
+                        <div>
+                          <CustomInput
+                            labelText={'Facebook profile...'}
+                            id="facebook"
+                            formControlProps={{
+                              fullWidth: true
+                            }}
+                            inputProps={{
+                              name: 'facebook',
+                              type: 'text',
+                              value: this.state.facebook,
+                              onChange: this.onChange,
+                              startAdornment: (
+                                <InputAdornment position="start">
+                                  <i className={'fab fa-facebook'} />
+                                </InputAdornment>
+                              )
+                            }}
+                          />
+
+                          <CustomInput
+                            labelText={'Instagram profile...'}
+                            id="instagram"
+                            formControlProps={{
+                              fullWidth: true
+                            }}
+                            inputProps={{
+                              name: 'instagram',
+                              type: 'text',
+                              value: this.state.instagram,
+                              onChange: this.onChange,
+                              startAdornment: (
+                                <InputAdornment position="start">
+                                  <i className={'fab fa-instagram'} />
+                                </InputAdornment>
+                              )
+                            }}
+                          />
+
+                          <CustomInput
+                            labelText={'LinkedIn profile...'}
+                            id="linkedin"
+                            formControlProps={{
+                              fullWidth: true
+                            }}
+                            inputProps={{
+                              name: 'linkedin',
+                              type: 'text',
+                              value: this.state.linkedin,
+                              onChange: this.onChange,
+                              startAdornment: (
+                                <InputAdornment position="start">
+                                  <i className={'fab fa-linkedin'} />
+                                </InputAdornment>
+                              )
+                            }}
+                          />
+
+                          <CustomInput
+                            labelText={'Twitter profile...'}
+                            id="twitter"
+                            formControlProps={{
+                              fullWidth: true
+                            }}
+                            inputProps={{
+                              name: 'twitter',
+                              type: 'text',
+                              value: this.state.twitter,
+                              onChange: this.onChange,
+                              startAdornment: (
+                                <InputAdornment position="start">
+                                  <i className={'fab fa-twitter'} />
+                                </InputAdornment>
+                              )
+                            }}
+                          />
+
+                          <CustomInput
+                            labelText={'GitHub profile...'}
+                            id="github"
+                            formControlProps={{
+                              fullWidth: true
+                            }}
+                            inputProps={{
+                              name: 'github',
+                              type: 'text',
+                              value: this.state.github,
+                              onChange: this.onChange,
+                              startAdornment: (
+                                <InputAdornment position="start">
+                                  <i className={'fab fa-github'} />
+                                </InputAdornment>
+                              )
+                            }}
+                          />
+                        </div>
 
                         {socialInputs}
                       </GridItem>
@@ -398,7 +418,7 @@ class EditProfile extends Component {
                   </CardBody>
                   <CardFooter className={classes.cardFooter}>
                     <Button color="success" size="lg" type="submit" round>
-                      Register
+                      Edit Profile
                     </Button>
                   </CardFooter>
                 </form>

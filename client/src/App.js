@@ -47,12 +47,10 @@ if (localStorage.jwtToken) {
   if (decoded.exp < currentTime) {
     // Logout user
     store.dispatch(logOutUser());
-
+    // Clear current Profile
     store.dispatch(clearCurrentProfile());
-    //TODO: Clear current profile
-
     // Redirect to login
-    window.location.href = '/login';
+    window.location.replace('http://stackoverflow.com');
   }
 }
 

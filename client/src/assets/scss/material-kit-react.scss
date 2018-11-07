@@ -43,13 +43,18 @@ hr {
   height: 1px;
   background-color: #eaeaea;
   border: 10px #aaaaaa;
-  margin: 0 15px;
+  margin: 1rem 0rem;
 }
 .AlignLeft {
   text-align: left !important;
 }
 .AlignRight {
   text-align: right !important;
+}
+
+// PopOver form on Profile
+.form {
+  padding: 1rem;
 }
 
 @media (max-width: 960px) {
