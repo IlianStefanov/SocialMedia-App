@@ -27,6 +27,7 @@ import EditProfile from './views/edit-profile/EditProfile';
 import CreateProfileHeader from './views/create-profile/create-profileHeader';
 import PrivateRoute from './views/common/PrivateRoute';
 import { Provider } from 'react-redux';
+import Profiles from './views/Profiles/Profiles';
 import ArrowDownwardSharp from '@material-ui/icons/ArrowDownwardSharp';
 // import REDUX store
 import store from './store';
@@ -50,7 +51,7 @@ if (localStorage.jwtToken) {
     // Clear current Profile
     store.dispatch(clearCurrentProfile());
     // Redirect to login
-    window.location.replace('http://stackoverflow.com');
+    window.location.replace('/login');
   }
 }
 
@@ -96,6 +97,7 @@ class App extends Component {
                 component={EditProfile}
               />
             </Switch>
+            <Route exact path="/profiles" component={Profiles} />
 
             {/* <Route exact path="/profile" component={ProfilePage} /> */}
             {/* <Parallax filter image={require('assets/img/landing-bg.jpg')}>

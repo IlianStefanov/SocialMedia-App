@@ -61,14 +61,18 @@ class ProfileActions extends React.Component {
     const { classes } = this.props;
     return (
       <GridContainer>
-        <GridItem xs={12} sm={12} md={12}>
+        <GridItem
+          xs={12}
+          sm={12}
+          md={12}
+          className={classes.profileActionsContainer}
+        >
           {/* EDIT PROFILE */}
-          <Link to="/edit-profile">
-            <Button round color="info">
-              <i className="fas fa-edit" />
-              <span>Edit Profile</span>
-            </Button>
-          </Link>
+
+          <Button round color="info" href="/edit-profile">
+            <i className="fas fa-edit" />
+            <span>Edit Profile</span>
+          </Button>
 
           {/* ADD EXPERIENCE */}
           <Button

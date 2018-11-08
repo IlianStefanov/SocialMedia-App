@@ -17,7 +17,11 @@ const User = require('../../models/User');
 // @route           GET api/profile/test
 // @description     Tests profile route
 // @access          Public
-router.get('/test', (req, res) => res.json({ msg: 'Profile Wroks' }));
+router.get('/profiles', (req, res) => {
+  Profile.find().then(profile => {
+    res.json(profile);
+  });
+});
 
 // @route   GET api/profile
 // @desc    Get current users profile
@@ -128,6 +132,8 @@ router.post(
     if (req.body.status) profileFields.status = req.body.status;
     if (req.body.githubusername)
       profileFields.githubusername = req.body.githubusername;
+
+    if (req.body.avatar) profileFields.avatar = req.body.avatar;
 
     // Skills - Split into array
     if (typeof req.body.skills !== undefined) {
@@ -277,12 +283,12 @@ router.delete(
   (req, res) => {
     Profile.findOne({ user: req.user.id })
       .then(profile => {
-        // Delete to exp array
+        // Get remove index
         const removeIndex = profile.education
           .map(item => item.id)
           .indexOf(req.params.edu_id);
 
-        // Splice array
+        // Splice out of array
         profile.education.splice(removeIndex, 1);
 
         // Save

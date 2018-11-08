@@ -23,6 +23,7 @@ import ProfileActions from './ProfileActions';
 import profile from 'assets/img/faces/christian.jpg';
 import isEmpty from '../../validation/is-empty';
 import Experience from './Experience';
+import Education from './Education';
 import studio1 from 'assets/img/examples/studio-1.jpg';
 import studio2 from 'assets/img/examples/studio-2.jpg';
 import studio3 from 'assets/img/examples/studio-3.jpg';
@@ -35,7 +36,7 @@ import work4 from 'assets/img/examples/mariya-georgieva.jpg';
 import work5 from 'assets/img/examples/clem-onojegaw.jpg';
 import CustomTabs from 'components/CustomTabs/CustomTabs.jsx';
 
-import profilePageStyle from 'assets/jss/material-kit-react/views/profilePage.jsx';
+import profilePage from 'assets/jss/material-kit-react/views/profilePage.jsx';
 
 class ProfilePage extends React.Component {
   render() {
@@ -49,7 +50,7 @@ class ProfilePage extends React.Component {
       classes.imgFluid
     );
     let socialLinks = {};
-    let experience = {};
+
     if (!isEmpty(profile.social)) {
       let socialLinksArray = Object.entries(profile.social);
       console.log(socialLinksArray);
@@ -68,9 +69,6 @@ class ProfilePage extends React.Component {
       ));
     } else {
       socialLinks = <h1>Add social links</h1>;
-    }
-
-    if (!isEmpty(profile.experience)) {
     }
 
     const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
@@ -107,12 +105,19 @@ class ProfilePage extends React.Component {
                   </div>
                 </GridItem>
 
-                <GridItem xs={12} sm={12} md={6}>
-                  <div className={classes.description}>
-                    <p>{profile.bio}</p>
-                  </div>
+                <GridItem
+                  xs={12}
+                  sm={12}
+                  md={6}
+                  className={classes.description}
+                >
+                  <div>{profile.bio}</div>
                 </GridItem>
               </GridContainer>
+              <hr />
+              <div>
+                <ProfileActions />
+              </div>
               <hr />
               {/* EXPERIENCE AND EDUCATION */}
               <div className={classes.container}>
@@ -124,14 +129,11 @@ class ProfilePage extends React.Component {
 
                   <GridItem xs={12} sm={12} md={6} lg={6}>
                     <h3 className={classes.title}>Education</h3>
-                    <Experience experience={profile.experience} />
+                    <Education education={profile.education} />
                   </GridItem>
                 </GridContainer>
               </div>
 
-              <div>
-                <ProfileActions />
-              </div>
               <GridContainer justify="center">
                 <GridItem xs={12} sm={12} md={8} className={classes.navWrapper}>
                   <NavPills
@@ -268,7 +270,7 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default withStyles(profilePageStyle)(
+export default withStyles(profilePage)(
   connect(
     mapStateToProps,
     { getCurrentProfile }
