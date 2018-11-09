@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getCurrentProfile } from '../../actions/profileActions';
 // @material-ui/core components
-import withStyles from '@material-ui/core/styles/withStyles';
+
 // @material-ui/icons
 import Camera from '@material-ui/icons/Camera';
 import Palette from '@material-ui/icons/Palette';
@@ -35,8 +35,10 @@ import work3 from 'assets/img/examples/cynthia-del-rio.jpg';
 import work4 from 'assets/img/examples/mariya-georgieva.jpg';
 import work5 from 'assets/img/examples/clem-onojegaw.jpg';
 import CustomTabs from 'components/CustomTabs/CustomTabs.jsx';
-
+import withStyles from '@material-ui/core/styles/withStyles';
 import profilePage from 'assets/jss/material-kit-react/views/profilePage.jsx';
+
+import ProfileGithub from '../Profile/ProfileGithub';
 
 class ProfilePage extends React.Component {
   render() {
@@ -134,7 +136,7 @@ class ProfilePage extends React.Component {
                 </GridContainer>
               </div>
 
-              <GridContainer justify="center">
+              {/* <GridContainer justify="center">
                 <GridItem xs={12} sm={12} md={8} className={classes.navWrapper}>
                   <NavPills
                     alignCenter
@@ -249,7 +251,9 @@ class ProfilePage extends React.Component {
                     ]}
                   />
                 </GridItem>
-              </GridContainer>
+              </GridContainer> */}
+
+              <ProfileGithub username={profile.githubusername} />
             </div>
           </div>
         </div>

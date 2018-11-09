@@ -31,20 +31,6 @@ class LandingPage extends React.Component {
                 <h1 className={classes.title}>Your Story Starts With Us.</h1>
                 <h4>Welcome to the Dev connector.</h4>
                 <br />
-                {/* <Button
-                  color="danger"
-                  size="lg"
-                  href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <i className="fas fa-play" />
-                  Watch video
-                </Button> */}
-                {/* <Button size="lg" color="primary" round href="login">
-                  
-                  Login
-                </Button> */}
 
                 <Button size="lg" color="primary" round href="register">
                   {/* <i className="fas fa-play" /> With Icon */}

@@ -390,14 +390,14 @@ class EditProfile extends Component {
 
                           <CustomInput
                             labelText={'GitHub profile...'}
-                            id="github"
+                            id="githubusername"
                             formControlProps={{
                               fullWidth: true
                             }}
                             inputProps={{
-                              name: 'github',
+                              name: 'githubusername',
                               type: 'text',
-                              value: this.state.github,
+                              value: this.state.githubusername,
                               onChange: this.onChange,
                               startAdornment: (
                                 <InputAdornment position="start">

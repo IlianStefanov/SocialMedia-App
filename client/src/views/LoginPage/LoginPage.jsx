@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { loginUser } from '../../actions/authActions';
 // @material-ui/core components
 import withStyles from '@material-ui/core/styles/withStyles';
+import loginPageStyle from 'assets/jss/material-kit-react/views/loginPage.jsx';
 import InputAdornment from '@material-ui/core/InputAdornment';
 
 import Icon from '@material-ui/core/Icon';
@@ -22,7 +23,6 @@ import CustomInput from 'components/CustomInput/CustomInput.jsx';
 import Parallax from '../../components/Parallax/Parallax';
 import GridContainer from '../../components/Grid/GridContainer.jsx';
 import GridItem from '../../components/Grid/GridItem.jsx';
-import loginPageStyle from 'assets/jss/material-kit-react/views/loginPage.jsx';
 
 class LoginPage extends React.Component {
   constructor(props) {

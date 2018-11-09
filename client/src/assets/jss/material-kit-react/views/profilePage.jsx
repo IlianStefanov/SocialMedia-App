@@ -61,6 +61,12 @@ const profilePage = {
     justifyContent: 'center',
     justifyItems: 'center',
     alignItems: 'center'
+  },
+  githubRepoLabels: {
+    display: 'flex',
+    justifyContent: 'center',
+    justifyItems: 'center',
+    alignItems: 'center'
   }
 };
 

@@ -24,11 +24,15 @@ import RegisterPage from './views/RegisterPage/RegisterPage.jsx';
 import Dashboard from './views/dashboard/dashboard';
 import CreateProfile from './views/create-profile/CreateProfile';
 import EditProfile from './views/edit-profile/EditProfile';
+import ProfileView from './views/Profile/ProfileView';
 import CreateProfileHeader from './views/create-profile/create-profileHeader';
 import PrivateRoute from './views/common/PrivateRoute';
 import { Provider } from 'react-redux';
 import Profiles from './views/Profiles/Profiles';
+import Notfound from './views/not-found/Notfound';
+import Post from './views/Posts/Post';
 import ArrowDownwardSharp from '@material-ui/icons/ArrowDownwardSharp';
+
 // import REDUX store
 import store from './store';
 
@@ -97,7 +101,14 @@ class App extends Component {
                 component={EditProfile}
               />
             </Switch>
+
+            <Switch>
+              <PrivateRoute exact path="/post" component={Post} />
+            </Switch>
             <Route exact path="/profiles" component={Profiles} />
+
+            <Route exact path="/profile/:handle" component={ProfileView} />
+            <Route exact path="/not-found" component={Notfound} />
 
             {/* <Route exact path="/profile" component={ProfilePage} /> */}
             {/* <Parallax filter image={require('assets/img/landing-bg.jpg')}>

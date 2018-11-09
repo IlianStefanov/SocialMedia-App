@@ -41,12 +41,29 @@ function HeaderLinks({ ...props }) {
     <List className={classes.list}>
       <ListItem className={classes.listItem}>
         <Button
-          href="#pablo"
+          href="/profiles"
           className={classes.navLink}
-          onClick={e => e.preventDefault()}
+          // onClick={e => e.preventDefault()}
           color="transparent"
         >
-          Discover
+          Profiles
+        </Button>
+
+        <Button
+          href="/feed"
+          className={classes.navLink}
+          // onClick={e => e.preventDefault()}
+          color="transparent"
+        >
+          Posts
+        </Button>
+        <Button
+          href="/post"
+          className={classes.navLink}
+          // onClick={e => e.preventDefault()}
+          color="transparent"
+        >
+          Create Post
         </Button>
       </ListItem>
       <ListItem className={classes.listItem}>
