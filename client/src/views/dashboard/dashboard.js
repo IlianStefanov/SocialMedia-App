@@ -37,9 +37,7 @@ class Dashboard extends Component {
               <GridContainer justify="center">
                 <GridItem xs={12} sm={12} md={6}>
                   <div>
-                    <p>
-                      Welcome {user.name} with user name: {profile.handle}
-                    </p>
+                    <p>Welcome {user.name}</p>
                     <p>You have not yet set up a profile info</p>
                     <Link to="/create-profile">
                       <Button color="success" size="lg" type="submit" round>

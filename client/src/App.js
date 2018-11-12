@@ -30,7 +30,7 @@ import PrivateRoute from './views/common/PrivateRoute';
 import { Provider } from 'react-redux';
 import Profiles from './views/Profiles/Profiles';
 import Notfound from './views/not-found/Notfound';
-import Post from './views/Posts/Post';
+import Posts from './views/Posts/Posts';
 import ArrowDownwardSharp from '@material-ui/icons/ArrowDownwardSharp';
 
 // import REDUX store
@@ -103,7 +103,7 @@ class App extends Component {
             </Switch>
 
             <Switch>
-              <PrivateRoute exact path="/post" component={Post} />
+              <PrivateRoute exact path="/post" component={Posts} />
             </Switch>
             <Route exact path="/profiles" component={Profiles} />
 
