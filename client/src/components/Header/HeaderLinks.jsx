@@ -88,7 +88,7 @@ function HeaderLinks({ ...props }) {
           dropdownList={[
             // Go to profile
 
-            <a href="/profile" className={classes.listItemLink}>
+            <a href="/dashboard" className={classes.listItemLink}>
               <Face className={classes.icons + ' ' + classes.linkIcon} />
               <span className={classes.linkText}>My Profile</span>
             </a>,

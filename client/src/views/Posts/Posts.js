@@ -41,6 +41,8 @@ class Posts extends Component {
           text={post.text}
           user={post.user}
           likes={post.likes.length}
+          likesArray={post.likes}
+          comments={post.comments}
         />
         // </GridItem>
       ));

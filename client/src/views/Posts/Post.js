@@ -2,7 +2,14 @@ import React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import postStyle from '../../assets/jss/material-kit-react/components/postStyle';
 import { connect } from 'react-redux';
-import { deleteComment, addLike, unLike } from '../../actions/postActions';
+import {
+  deleteComment,
+  addLike,
+  unLike,
+  addComment
+} from '../../actions/postActions';
+
+import ReplyBox from './ReplyBox';
 
 import PropTypes from 'prop-types';
 class Post extends React.Component {
@@ -10,22 +17,78 @@ class Post extends React.Component {
     super(props);
 
     this.state = {
-      like: false
+      text: '',
+      errors: {}
     };
+
+    this.onChange = this.onChange.bind(this);
+    this.onSubmitComment = this.onSubmitComment.bind(this);
+    this.onClick = this.onClick.bind(this);
+  }
+
+  findUserLikes(likes) {
+    const { auth } = this.props;
+    if (likes.filter(like => like.user === auth.user.id).length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  onClick() {
+    console.log(this.props.id);
+  }
+
+  componentDidMount() {
+    if (this.findUserLikes(this.props.likesArray)) {
+      this.setState({
+        like: true
+      });
+    }
+  }
+
+  onChange(e) {
+    this.setState({
+      text: e.target.value
+    });
+  }
+
+  onSubmitComment(e) {
+    e.preventDefault();
+
+    const { user } = this.props.auth;
+    const postId = this.props.id;
+
+    const newComment = {
+      text: this.state.text,
+      name: user.name,
+      avatar: user.avatar
+    };
+    // const commentValue = this.state.comment;
+
+    this.props.addComment(postId, newComment);
+    console.log(`${postId}  +  ${this.state.text}`);
+    this.setState({ text: '' });
   }
 
   onDeleteClick() {
     this.props.deleteComment(this.props.id);
     console.log(this.props.id);
   }
-  like() {
-    // if (like) {
-    //   this.props.addLike();
-    // } else {
-    //   this.props.unLike();
-    // }
+  // like(id) {
+  //   this.props.addLike(id);
+  // }
 
-    this.props.addLike(this.props.id);
+  // unLike(id) {
+  //   this.props.unLike(id);
+  // }
+
+  likeAndDislike(id) {
+    if (this.findUserLikes(this.props.likesArray)) {
+      this.props.unLike(id);
+    } else {
+      this.props.addLike(id);
+    }
   }
 
   render() {
@@ -33,10 +96,6 @@ class Post extends React.Component {
     const { isAuthenticated, user } = this.props.auth;
 
     let deletePost;
-
-    // deleteComment() {
-    //   this.this.props.deleteComment();
-    // }
 
     if (isAuthenticated && user.id === this.props.user) {
       deletePost = (
@@ -50,6 +109,21 @@ class Post extends React.Component {
     } else {
       deletePost = null;
     }
+    // console.log(this.props.comments);
+
+    const listReplies = this.props.comments.map((comment, i) => (
+      //list all comment boxes generated from the comment form and creates a unique id for each comment box
+      <ReplyBox
+        key={i}
+        id={comment._id}
+        text={comment.text}
+        avatar={comment.avatar}
+        name={comment.name}
+        user={comment.user}
+        postId={this.props.id}
+      />
+    ));
+
     return (
       <div className={classes.commentContainer + ' ' + classes.container}>
         {/* <div className={classes.commentInfo}>
@@ -90,12 +164,18 @@ class Post extends React.Component {
             <p className="post-content">{this.props.text}</p>
 
             <div className="post-actions">
-              <span className="post-actions__like">
-                <button onClick={this.like.bind(this)}>LIKE</button>
-              </span>
-
-              <span className="post-actions__share">
-                <a href="javascript:;">SHARE</a>
+              <span
+                className={
+                  this.findUserLikes(this.props.likesArray)
+                    ? 'post-actions__like'
+                    : 'post-actions__unlike'
+                }
+              >
+                <button onClick={this.likeAndDislike.bind(this, this.props.id)}>
+                  {this.findUserLikes(this.props.likesArray)
+                    ? 'Dislike'
+                    : 'Like'}
+                </button>
               </span>
 
               <span className="post-actions__comment">
@@ -118,16 +198,27 @@ class Post extends React.Component {
                 <a href="javascript:;">FEEDBACK</a>
               </div>
               <div className="CommentInput">
-                <form action="submit" className="comment-form">
+                <form
+                  action="submit"
+                  className="comment-form"
+                  onSubmit={this.onSubmitComment}
+                >
                   <input
+                    name="text"
                     type="text"
                     placeholder="Reply..."
+                    value={this.state.text}
+                    onChange={this.onChange}
+                    onClick={this.onClick}
                     // ref={ref => (this.textInput = ref)}
                   />
+                  <button type="submit" className="SubmitComment">
+                    Submit
+                  </button>
                 </form>
               </div>
 
-              {/* <div className="list-replies">{listReplies}</div> */}
+              <div className="list-replies">{listReplies}</div>
             </div>
           </div>
         </div>
@@ -140,12 +231,13 @@ const mapStateToProps = state => ({
   deleteComment: PropTypes.func.isRequired,
   addLike: PropTypes.func.isRequired,
   unLike: PropTypes.func.isRequired,
+  postId: PropTypes.string.isRequired,
   auth: state.auth
 });
 
 export default withStyles(postStyle)(
   connect(
     mapStateToProps,
-    { deleteComment, addLike, unLike }
+    { deleteComment, addLike, unLike, addComment }
   )(Post)
 );

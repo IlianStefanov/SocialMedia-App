@@ -70,7 +70,7 @@ class ProfilePage extends React.Component {
         </Button>
       ));
     } else {
-      socialLinks = <h1>Add social links</h1>;
+      socialLinks = <p>No social links yet</p>;
     }
 
     const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
@@ -257,7 +257,6 @@ class ProfilePage extends React.Component {
             </div>
           </div>
         </div>
-        <Footer />
       </div>
     );
   }
