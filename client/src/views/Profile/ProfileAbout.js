@@ -12,6 +12,8 @@ import isEmpty from '../../validation/is-empty';
 import ProfileGithub from './ProfileGithub';
 import Experience from './Experience';
 import Education from './Education';
+
+
 class ProfileAbout extends Component {
   render() {
     const { classes, ...rest } = this.props;
@@ -122,6 +124,8 @@ class ProfileAbout extends Component {
                   </GridItem>
                 </GridContainer>
               </div>
+
+              
             </div>
           </div>
         </div>

@@ -3,7 +3,8 @@ import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getCurrentProfile } from '../../actions/profileActions';
+import { getCurrentProfile,  } from '../../actions/profileActions';
+import unsplash from '../../api/unsplash';
 // @material-ui/core components
 
 // @material-ui/icons
@@ -37,10 +38,26 @@ import work5 from 'assets/img/examples/clem-onojegaw.jpg';
 import CustomTabs from 'components/CustomTabs/CustomTabs.jsx';
 import withStyles from '@material-ui/core/styles/withStyles';
 import profilePage from 'assets/jss/material-kit-react/views/profilePage.jsx';
-
+import Searchbar from '../Searchbar/Searchbar';
+import ImageList from '../Searchbar/ImageList';
 import ProfileGithub from '../Profile/ProfileGithub';
 
 class ProfilePage extends React.Component {
+  
+  state = { images: [] };
+
+  onSearchSubmit = async (term) => {
+    const response = await unsplash.get('/search/photos', {
+        params: { query: term }, 
+        
+    })
+
+
+    console.log(response.data.results);
+    this.setState({ images: response.data.results });
+  }
+
+
   render() {
     const { user } = this.props.auth;
     const { profile, loading } = this.props.profile;
@@ -254,6 +271,15 @@ class ProfilePage extends React.Component {
               </GridContainer> */}
 
               <ProfileGithub username={profile.githubusername} />
+              <div>
+              
+<hr />
+
+<Searchbar onSubmit={this.onSearchSubmit}/>
+Found: {this.state.images.length} images
+<ImageList searchResults={this.state.images} />
+
+              </div>
             </div>
           </div>
         </div>

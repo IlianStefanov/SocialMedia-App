@@ -16,7 +16,7 @@ import GridContainer from './components/Grid/GridContainer.jsx';
 import GridItem from './components/Grid/GridItem.jsx';
 import landingPageStyle from './assets/jss/material-kit-react/views/landingPage.jsx';
 import Parallax from './components/Parallax/Parallax.jsx';
-import './App.css';
+// import './App.css';
 import LandingPage from './views/LandingPage/LandingPage.jsx';
 import LoginPage from './views/LoginPage/LoginPage.jsx';
 import ProfilePage from './views/dashboard/ProfilePage';
@@ -29,6 +29,7 @@ import CreateProfileHeader from './views/create-profile/create-profileHeader';
 import PrivateRoute from './views/common/PrivateRoute';
 import { Provider } from 'react-redux';
 import Profiles from './views/Profiles/Profiles';
+import Videos from './views/Videos/Videos';
 import Notfound from './views/not-found/Notfound';
 import Posts from './views/Posts/Posts';
 import ArrowDownwardSharp from '@material-ui/icons/ArrowDownwardSharp';
@@ -60,6 +61,8 @@ if (localStorage.jwtToken) {
 }
 
 class App extends Component {
+
+
   render() {
     const { classes, ...rest } = this.props;
     return (
@@ -106,6 +109,7 @@ class App extends Component {
               <PrivateRoute exact path="/post" component={Posts} />
             </Switch>
             <Route exact path="/profiles" component={Profiles} />
+            <Route exact path="/videos" component={Videos} />
 
             <Route exact path="/profile/:handle" component={ProfileView} />
             <Route exact path="/not-found" component={Notfound} />

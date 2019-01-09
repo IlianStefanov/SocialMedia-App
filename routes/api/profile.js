@@ -106,6 +106,14 @@ router.get('/user/:user_id', (req, res) => {
     );
 });
 
+
+
+// router.get('/collections/curated/:id/photos', (req, res) => {
+//   const errors = {};
+
+//   Profile.findOne()
+// });
+
 // @route           POST api/profile
 // @description     Creat or Edit user profile
 // @access          Private
